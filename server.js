@@ -13,7 +13,9 @@ const main = async () => {
 
     server
       .get("*", (req, res) => krabs(req, res, handle, app))
-      .listen(3000, () => console.log("server ready"));
+      .listen(process.env.PORT || 3000, () =>
+        console.log(`Server is ready on port ${process.env.PORT || 3000}.`)
+      );
   } catch (err) {
     console.log(err.stack);
   }
