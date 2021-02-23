@@ -4,7 +4,7 @@ const krabs = require("krabs").default;
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 
-async function main() {
+const main = async () => {
   try {
     await app.prepare();
 
@@ -17,6 +17,6 @@ async function main() {
   } catch (err) {
     console.log(err.stack);
   }
-}
+};
 
 main();
