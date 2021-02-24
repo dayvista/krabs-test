@@ -12,7 +12,11 @@ const main = async () => {
     const server = express();
 
     server
-      .get("*", (req, res) => krabs(req, res, handle, app))
+      .get("*", (req, res) => {
+        res.redirect("https://" + req.headers.host + req.url);
+
+        return krabs(req, res, handle, app);
+      })
       .listen(process.env.PORT || 3000, () =>
         console.log(`Server is ready on port ${process.env.PORT || 3000}.`)
       );
