@@ -11,13 +11,15 @@ export const getServerSideProps = async () => {
   return {
     props: {
       result: error ? null : data,
+      time: new Date().toISOString(),
     },
   };
 };
 
-const SsrOne = ({ result }) => {
+const SsrOne = ({ result, time }) => {
   return result ? (
     <>
+      <p>{time}</p>
       <NextLink href="/">
         <a>Link to home page</a>
       </NextLink>
