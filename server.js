@@ -13,9 +13,12 @@ const main = async () => {
 
     server
       .get("*", (req, res) => {
-        // res.redirect("https://" + req.headers.host + req.url);
+        if (req.headers["x-forwarded-proto"] == "http") {
+          res.redirect("https://" + req.headers.host + req.url);
+        }
 
-        console.log(req);
+        console.log(req.headers["x-forwarded-proto"]);
+        console.log("https://" + req.headers.host + req.url);
 
         return krabs(req, res, handle, app);
       })
