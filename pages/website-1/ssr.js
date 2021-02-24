@@ -1,4 +1,5 @@
 import { supabase } from "src/lib/utils/initializers";
+import { default as NextLink } from "next/link";
 
 export const getServerSideProps = async () => {
   const { data, error } = await supabase.from("starts_with_3").select("*");
@@ -17,6 +18,9 @@ export const getServerSideProps = async () => {
 const SsrOne = ({ result }) => {
   return result ? (
     <>
+      <NextLink href="/">
+        <a>Link to home page</a>
+      </NextLink>
       {result.map((data) => {
         return (
           <div
