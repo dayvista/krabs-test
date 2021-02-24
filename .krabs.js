@@ -4,7 +4,7 @@ module.exports = {
       name: "website-1",
       domains: [
         {
-          dev: "local.dayvista.dev",
+          dev: "local.test1.dev",
           stage: "stage.dayvista.dev",
           prod: "dayvista.dev",
         },
@@ -14,7 +14,7 @@ module.exports = {
       name: "website-2",
       domains: [
         {
-          dev: "local.juiseo.com",
+          dev: "local.test2.com",
           stage: "stage.juiseo.com",
           prod: "juiseo.com",
         },
