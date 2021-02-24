@@ -13,7 +13,8 @@ const main = async () => {
     const devHandler = app.getRequestHandler();
 
     const script = require.resolve("./init");
-    const cachedHandler = await CachedHandler({ script, args });
+    const cached = await CachedHandler({ script, args });
+    const cachedHandler = cached.hanler;
 
     console.log(cachedHandler);
 
