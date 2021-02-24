@@ -20,7 +20,7 @@ const main = async () => {
           res.redirect("https://" + req.headers.host + req.url);
         }
 
-        return krabs(req, res, handler, app);
+        return krabs(req, res, handler, dev ? init : script);
       })
       .listen(process.env.PORT || 3000, () =>
         console.log(`Server is ready on port ${process.env.PORT || 3000}.`)
