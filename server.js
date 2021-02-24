@@ -14,7 +14,7 @@ const main = async () => {
 
     const script = require.resolve("./init");
     const cached = await CachedHandler({ script, args });
-    const cachedHandler = cached.hanler;
+    const cachedHandler = cached.handler;
 
     console.log(cachedHandler);
 
