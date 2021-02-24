@@ -13,7 +13,9 @@ const main = async () => {
 
     server
       .get("*", (req, res) => {
-        res.redirect("https://" + req.headers.host + req.url);
+        // res.redirect("https://" + req.headers.host + req.url);
+
+        console.log(req);
 
         return krabs(req, res, handle, app);
       })
