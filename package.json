@@ -14,5 +14,8 @@
     "next-boost": "^0.9.0",
     "react": "17.0.1",
     "react-dom": "17.0.1"
-  }
+  },
+  "cacheDirectories": [
+    ".next/cache"
+  ]
 }

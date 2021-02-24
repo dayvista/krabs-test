@@ -12,7 +12,10 @@ const main = async () => {
 
     const devHandler = app.getRequestHandler();
 
-    const cachedHandler = await CachedHandler({ devHandler, args });
+    const script = require.resolve("./init");
+    const cachedHandler = await CachedHandler({ script, args });
+
+    console.log(cachedHandler);
 
     server
       .get("*", (req, res) => {
