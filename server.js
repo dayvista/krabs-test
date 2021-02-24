@@ -1,9 +1,8 @@
 const express = require("express");
-// const next = require("next");
 const krabs = require("krabs").default;
 const dev = process.env.NODE_ENV !== "production";
 const CachedHandler = require("next-boost").default;
-// const app = next({ dev });
+const args = { dir: ".", dev };
 
 const main = async () => {
   try {
@@ -13,9 +12,6 @@ const main = async () => {
 
     const handler = dev ? await init(args) : cached.handler;
 
-    // await app.prepare();
-
-    // const handler = app.getRequestHandler();
     const server = express();
 
     server
