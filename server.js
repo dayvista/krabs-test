@@ -2,15 +2,19 @@ const express = require("express");
 const krabs = require("krabs").default;
 const dev = process.env.NODE_ENV !== "production";
 const CachedHandler = require("next-boost").default;
+const next = require("next");
 const args = { dir: ".", dev };
+const app = next(args);
 
 const main = async () => {
   try {
-    const init = require("./init").default;
-    const script = require.resolve("./init");
-    const cached = await CachedHandler({ script, args });
+    await app.prepare();
 
-    const handler = dev ? await init(args) : cached.handler;
+    const handler = app.getRequestHandler();
+
+    const cached = await CachedHandler({ handler, args });
+
+    console.log(cached);
 
     const server = express();
 
@@ -20,7 +24,7 @@ const main = async () => {
           res.redirect("https://" + req.headers.host + req.url);
         }
 
-        return krabs(req, res, handler, dev ? init : script);
+        return krabs(req, res, handler, dev ? handler : cached);
       })
       .listen(process.env.PORT || 3000, () =>
         console.log(`Server is ready on port ${process.env.PORT || 3000}.`)
