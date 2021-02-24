@@ -7,17 +7,12 @@ const args = { dir: ".", dev };
 
 const main = async () => {
   try {
-    // const app = require("next")(args);
-    // await app.prepare();
-
-    // const devHandler = app.getRequestHandler();
-
     const init = require("./init").default;
     const devHandler = await init(args);
 
     const script = require.resolve("./init");
-    const cached = await CachedHandler({ script, args });
-    const cachedHandler = cached.handler;
+    const initCache = await CachedHandler({ script, args });
+    const cachedHandler = initCache.handler;
 
     server
       .get("*", (req, res) => {
@@ -25,7 +20,7 @@ const main = async () => {
           res.redirect("https://" + req.headers.host + req.url);
         }
 
-        return krabs(req, res, dev ? devHandler : cachedHandler, app);
+        return krabs(req, res, dev ? devHandler : cachedHandler, global.app);
       })
       .listen(process.env.PORT || 3000, () =>
         console.log(`Server is ready on port ${process.env.PORT || 3000}.`)
