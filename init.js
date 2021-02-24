@@ -1,5 +1,7 @@
 const init = async (args) => {
-  const app = require("next")(args);
+  global.app = require("next")(args);
+
+  // const app = require("next")(args);
   await app.prepare();
   return app.getRequestHandler();
 };

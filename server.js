@@ -7,16 +7,17 @@ const args = { dir: ".", dev };
 
 const main = async () => {
   try {
-    const app = require("next")(args);
-    await app.prepare();
+    // const app = require("next")(args);
+    // await app.prepare();
 
-    const devHandler = app.getRequestHandler();
+    // const devHandler = app.getRequestHandler();
+
+    const init = require("./init").default;
+    const devHandler = await init(args);
 
     const script = require.resolve("./init");
     const cached = await CachedHandler({ script, args });
     const cachedHandler = cached.handler;
-
-    console.log(cachedHandler);
 
     server
       .get("*", (req, res) => {
