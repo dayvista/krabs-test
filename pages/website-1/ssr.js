@@ -18,7 +18,21 @@ const SsrOne = ({ result }) => {
   return result ? (
     <>
       {result.map((data) => {
-        return <p>{data?.zip}</p>;
+        return (
+          <div
+            style={{
+              display: "flex",
+              width: "100vw",
+              margin: "2vh 0",
+              justifyContent: "space-evenly",
+            }}
+          >
+            <p>{`Row ID: ${data?.id}`}</p>
+            <p>{data?.zip}</p>
+            <p>{data?.lat}</p>
+            <p>{data?.long}</p>
+          </div>
+        );
       })}
     </>
   ) : (
